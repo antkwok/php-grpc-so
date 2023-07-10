@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  grpc-image:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: "grpc-image:1.0"
+    restart: unless-stopped
+    ports:
+      - "8542:8080"
+    environment:
+      - PHP_IDE_CONFIG=serverName=docker-server
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    working_dir: /var/www/
